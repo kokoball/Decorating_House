@@ -1,5 +1,11 @@
+import { Button } from '@components/base';
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <Button />
+    </>
+  );
 }
 
 export default App;
