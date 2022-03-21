@@ -1,15 +1,16 @@
-import styled from 'styled-components';
 import { Button } from '@components/base';
 import { Bubble } from '@components/base';
 import * as S from './Style';
 
-interface ToolTipProps {
+export interface ToolTipProps {
   isOpen: boolean;
   productionName: string;
   imageUrl: string;
   priceDiscount: number;
   discountRate: number;
   outside: boolean;
+  pointX: number;
+  pointY: number;
 }
 
 const ToolTip = ({
@@ -17,10 +18,13 @@ const ToolTip = ({
   priceDiscount,
   productionName,
   imageUrl,
+  discountRate,
   outside,
+  pointX,
+  pointY,
 }: ToolTipProps) => {
   return (
-    <S.ToolTipBlock>
+    <S.ToolTipBlock pointX={pointX} pointY={pointY}>
       <Button />
       {isOpen && (
         <Bubble
