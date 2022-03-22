@@ -7,6 +7,7 @@ module.exports = override(
     '@': path.resolve(__dirname, 'src'),
     '@apis': path.resolve(__dirname, 'src/apis'),
     '@assets': path.resolve(__dirname, 'src/assets'),
+    '@contexts': path.resolve(__dirname, 'src/contexts'),
     '@pages': path.resolve(__dirname, 'src/pages'),
     '@components': path.resolve(__dirname, 'src/components'),
     '@hooks': path.resolve(__dirname, 'src/hooks'),
