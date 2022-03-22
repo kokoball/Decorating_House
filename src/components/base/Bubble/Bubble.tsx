@@ -1,4 +1,5 @@
 import { ImageBox } from '@components/base';
+import { addCommaSecond } from '@utils';
 import * as S from './Style';
 
 export interface BubbleProps {
@@ -40,7 +41,7 @@ const Bubble = ({
           ) : (
             <S.ExpectedPrice>예상가</S.ExpectedPrice>
           )}
-          <S.Price className={'price'}>{price}</S.Price>
+          <S.Price className={'price'}>{addCommaSecond(price)}</S.Price>
           <div>{'>'}</div>
         </S.PriceTab>
       </S.RightSection>
