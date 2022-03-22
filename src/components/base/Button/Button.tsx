@@ -3,12 +3,12 @@ import * as S from './Style';
 
 interface ButtonProps {
   isOpen: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onMouseDown: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button = ({ isOpen = false, onClick }: ButtonProps) => {
+const Button = ({ isOpen = false, onMouseDown }: ButtonProps) => {
   return (
-    <S.ButtonWrapper onClick={onClick}>
+    <S.ButtonWrapper onMouseDown={onMouseDown}>
       <S.Button>
         <S.SpanButton />
         <S.Svg viewBox="0 0 24 24">

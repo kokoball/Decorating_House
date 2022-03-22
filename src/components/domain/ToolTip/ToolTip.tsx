@@ -31,15 +31,11 @@ const ToolTip = ({
   const isOpen = selectedProduct === productionName;
 
   const toggleTooltip = () => {
-    if (selectedProduct === productionName) {
-      setProduct('');
-    } else {
-      setProduct(productionName);
-    }
+    setProduct(productionName);
   };
   return (
     <S.ToolTipBlock pointX={pointX} pointY={pointY}>
-      <Button isOpen={isOpen} onClick={toggleTooltip} />
+      <Button isOpen={isOpen} onMouseDown={toggleTooltip} />
       {isOpen && (
         <Bubble
           isOpen={isOpen}
@@ -49,6 +45,7 @@ const ToolTip = ({
           price={priceDiscount}
           direction={{ upOrDown, leftOrRight }}
           outside={outside}
+          onBlur={() => setProduct('')}
         />
       )}
     </S.ToolTipBlock>

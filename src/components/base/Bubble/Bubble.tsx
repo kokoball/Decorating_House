@@ -1,5 +1,6 @@
 import { ImageBox } from '@components/base';
 import { addCommaSecond } from '@utils';
+import { FocusEventHandler, useEffect, useRef } from 'react';
 import * as S from './Style';
 
 export interface BubbleProps {
@@ -13,19 +14,33 @@ export interface BubbleProps {
   title: string;
   isOpen: boolean;
   outside: boolean;
+  onBlur: FocusEventHandler<HTMLDivElement>;
 }
 
 const Bubble = ({
-  isOpen, // 나중에 제거
+  isOpen,
   direction,
   price,
   discount,
   imageUrl,
   title,
   outside,
+  onBlur,
 }: BubbleProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.focus();
+    }
+  }, [isOpen]);
+
   return (
-    <S.BubbleBlock direction={direction} isOpen={isOpen}>
+    <S.BubbleBlock
+      direction={direction}
+      isOpen={isOpen}
+      tabIndex={1}
+      ref={ref}
+      onBlur={onBlur}>
       <ImageBox
         width={70}
         height={70}

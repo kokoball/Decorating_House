@@ -6,6 +6,7 @@ interface ImageBoxProps {
   selected: boolean;
   radius?: number;
   imageUrl: string;
+  onClick?: any;
 }
 
 const ImageBox = ({
@@ -14,6 +15,7 @@ const ImageBox = ({
   radius = 16,
   selected,
   imageUrl,
+  onClick,
 }: ImageBoxProps) => {
   return (
     <S.ImageBoxBlock
@@ -21,6 +23,7 @@ const ImageBox = ({
       height={height}
       selected={selected}
       radius={radius}>
+      onClick={onClick}
       <img src={imageUrl} alt="가구 이미지" />
     </S.ImageBoxBlock>
   );
