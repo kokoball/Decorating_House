@@ -10,17 +10,21 @@ export interface BubbleProps {
   discount: number;
   imageUrl: string;
   title: string;
+  isOpen: boolean;
+  outside: boolean;
 }
 
 const Bubble = ({
+  isOpen, // 나중에 제거
   direction,
   price,
   discount,
   imageUrl,
   title,
+  outside,
 }: BubbleProps) => {
   return (
-    <S.BubbleBlock direction={direction}>
+    <S.BubbleBlock direction={direction} isOpen={isOpen}>
       <ImageBox
         width={70}
         height={70}
@@ -31,7 +35,7 @@ const Bubble = ({
       <S.RightSection>
         <S.Title>{title}</S.Title>
         <S.PriceTab className="price-tab">
-          {discount ? (
+          {!outside ? (
             <S.Discount>{discount}%</S.Discount>
           ) : (
             <S.ExpectedPrice>예상가</S.ExpectedPrice>

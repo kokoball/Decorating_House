@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import { BubbleProps } from './Bubble';
 
-export const BubbleBlock = styled.div<Pick<BubbleProps, 'direction'>>`
+export const BubbleBlock = styled.div<
+  Pick<BubbleProps, 'direction' | 'isOpen'>
+>`
   position: absolute;
+  z-index: 1000;
   ${({ direction }) =>
-    direction.upOrDown === 'up' ? `top: 30px;` : 'top: -95px;'}
+    direction.upOrDown === 'up' ? `top: 25px;` : 'top: -110px;'}
   ${({ direction }) =>
     direction.leftOrRight === 'left' ? `left: -26px;` : 'left: -161px;'}
   display: flex;

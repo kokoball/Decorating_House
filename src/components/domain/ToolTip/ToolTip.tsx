@@ -1,9 +1,9 @@
 import { Button } from '@components/base';
 import { Bubble } from '@components/base';
+import { useSetProduct, useProductState } from '@contexts/ProductContext';
 import * as S from './Style';
 
 export interface ToolTipProps {
-  isOpen: boolean;
   productionName: string;
   imageUrl: string;
   priceDiscount: number;
@@ -14,7 +14,6 @@ export interface ToolTipProps {
 }
 
 const ToolTip = ({
-  isOpen,
   priceDiscount,
   productionName,
   imageUrl,
@@ -23,18 +22,33 @@ const ToolTip = ({
   pointX,
   pointY,
 }: ToolTipProps) => {
-  const upOrDown = pointX < 400 ? 'up' : 'down';
-  const leftOrRight = pointY < 400 ? 'left' : 'right';
+  const setProduct = useSetProduct();
+  const selectedProduct = useProductState();
+
+  const upOrDown = pointY * 1.7 < 450 ? 'up' : 'down';
+  const leftOrRight = pointX * 1.6 < 400 ? 'right' : 'left';
+
+  const isOpen = selectedProduct === productionName;
+
+  const toggleTooltip = () => {
+    if (selectedProduct === productionName) {
+      setProduct('');
+    } else {
+      setProduct(productionName);
+    }
+  };
   return (
     <S.ToolTipBlock pointX={pointX} pointY={pointY}>
-      <Button />
+      <Button isOpen={isOpen} onClick={toggleTooltip} />
       {isOpen && (
         <Bubble
+          isOpen={isOpen}
           title={productionName}
           imageUrl={imageUrl}
           discount={discountRate}
           price={priceDiscount}
           direction={{ upOrDown, leftOrRight }}
+          outside={outside}
         />
       )}
     </S.ToolTipBlock>

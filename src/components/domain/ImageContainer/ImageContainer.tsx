@@ -26,7 +26,6 @@ const ImageContainer = ({ imageViewData }: ImageContainerProps) => {
         }) => (
           <ToolTip
             key={productId}
-            isOpen={false}
             discountRate={discountRate}
             imageUrl={imageUrl}
             priceDiscount={priceDiscount}

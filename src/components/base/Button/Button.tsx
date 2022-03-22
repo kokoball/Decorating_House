@@ -1,8 +1,14 @@
+import { MouseEventHandler } from 'react';
 import * as S from './Style';
 
-const Button = () => {
+interface ButtonProps {
+  isOpen: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+const Button = ({ isOpen = false, onClick }: ButtonProps) => {
   return (
-    <S.ButtonWrapper>
+    <S.ButtonWrapper onClick={onClick}>
       <S.Button>
         <S.SpanButton />
         <S.Svg viewBox="0 0 24 24">
