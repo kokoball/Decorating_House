@@ -7,7 +7,7 @@ interface ImageBoxProps {
   radius: number;
 }
 
-export const ImageBoxBlock = styled.div<ImageBoxProps>`
+export const ImageBoxBlock = styled.div<Omit<ImageBoxProps, 'imageUrl'>>`
   position: relative;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
