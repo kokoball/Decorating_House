@@ -7,7 +7,7 @@ export const ImageSlideBlock = styled.div`
   overflow-y: hidden;
   overflow-x: auto;
 `;
-export const SlideWrapper = styled.ul`
+export const SlideWrapper = styled.ul<{ translateX: number }>`
   position: relative;
   width: 100%;
   height: 100%;
@@ -15,6 +15,9 @@ export const SlideWrapper = styled.ul`
   display: flex;
   transition-property: transform;
   box-sizing: content-box;
+  will-change: contents;
+  transition: 0.45s;
+  transform: translateX(${({ translateX }) => translateX}px);
 `;
 
 export const SlideItem = styled.li`

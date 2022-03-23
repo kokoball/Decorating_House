@@ -1,7 +1,8 @@
+import React, { useEffect, useRef, useState } from 'react';
 import { IProduct } from '@types';
 import { ImageBox } from '@components/base';
 import { useProductState, useSetProduct } from '@contexts/ProductContext';
-import { useEffect, useRef } from 'react';
+import { SLIDE } from '@utils';
 import * as S from './Style';
 
 interface ImageSlideProps {
@@ -13,6 +14,7 @@ const ImageSlide = ({ productList }: ImageSlideProps) => {
   const selectedProduct = useProductState();
   const slideItemRef = useRef<{ [propsName: string]: HTMLDivElement }>({});
   const sliderRef = useRef<any>();
+  const [translateX, setTranslateX] = useState(0);
 
   const toggleTooltip = (nextProduct: string) => {
     return () => {
@@ -23,6 +25,14 @@ const ImageSlide = ({ productList }: ImageSlideProps) => {
       }
     };
   };
+  const maxTransX =
+    Math.floor(productList.length / SLIDE.SCROLL_COUNT) * SLIDE.ITEM_WIDTH +
+    SLIDE.PAD;
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [coordinate, setCoordinate] = useState({
+    startX: 0,
+    distance: 0,
+  });
 
   useEffect(() => {
     const imageElems = Array.from(
@@ -36,13 +46,42 @@ const ImageSlide = ({ productList }: ImageSlideProps) => {
   }, []);
 
   useEffect(() => {
-    const x = slideItemRef.current[selectedProduct]?.getBoundingClientRect().x;
-    x && sliderRef.current.scrollTo(x, 0);
+    if (!slideItemRef.current[selectedProduct]) {
+      return;
+    }
+    const transX = slideItemRef.current[selectedProduct]?.offsetLeft;
+
+    setTranslateX(transX);
   }, [selectedProduct]);
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLUListElement>) => {
+    const { clientX } = e;
+    setIsMouseDown(true);
+    setCoordinate({ ...coordinate, startX: clientX });
+  };
+  const handleMouseUp = () => {
+    setCoordinate({ distance: 0, startX: 0 });
+    setIsMouseDown(false);
+  };
+  const handleMouseMove = (e: React.MouseEvent<HTMLUListElement>) => {
+    if (!isMouseDown) {
+      return;
+    }
+    setTranslateX(
+      coordinate.startX - e.clientX < 0 ? 0 : coordinate.startX - e.clientX
+    );
+  };
 
   return (
     <S.ImageSlideBlock ref={sliderRef}>
-      <S.SlideWrapper>
+      <S.SlideWrapper
+        translateX={
+          -(translateX > maxTransX ? maxTransX : translateX - SLIDE.PAD)
+        }
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        draggable={false}>
         {productList.map(({ productId, imageUrl, productName }) => (
           <S.SlideItem
             key={productId}
