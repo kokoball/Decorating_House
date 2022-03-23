@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as S from './Style';
 
 interface ImageBoxProps {
@@ -17,13 +18,24 @@ const ImageBox = ({
   imageUrl,
   onClick,
 }: ImageBoxProps) => {
+  const [startX, setStartX] = useState(0);
+  const handleMouseDown = (e: any) => {
+    const { clientX } = e;
+    setStartX(clientX);
+  };
+  const handleMouseUp = (e: any) => {
+    if (Math.abs(startX - e.clientX) < 10) {
+      onClick(e);
+    }
+  };
   return (
     <S.ImageBoxBlock
       width={width}
       height={height}
       selected={selected}
       radius={radius}
-      onClick={onClick}>
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}>
       <img src={imageUrl} alt="가구 이미지" draggable={false} />
     </S.ImageBoxBlock>
   );
