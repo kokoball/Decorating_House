@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from '@components/base';
 import { Bubble } from '@components/base';
 import { useSetProduct, useProductState } from '@contexts/ProductContext';
@@ -11,9 +12,11 @@ export interface ToolTipProps {
   outside: boolean;
   pointX: number;
   pointY: number;
+  productId: number;
 }
 
 const ToolTip = ({
+  productId,
   priceDiscount,
   productionName,
   imageUrl,
@@ -30,14 +33,18 @@ const ToolTip = ({
 
   const isOpen = selectedProduct === productionName;
 
-  const toggleTooltip = () => {
-    setProduct(productionName);
+  const toggleTooltip = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setProduct((prevProduct) => {
+      return prevProduct === productionName ? '' : productionName;
+    });
   };
   return (
     <S.ToolTipBlock pointX={pointX} pointY={pointY}>
-      <Button isOpen={isOpen} onMouseDown={toggleTooltip} />
+      <Button isOpen={isOpen} onClick={toggleTooltip} />
       {isOpen && (
         <Bubble
+          productId={productId}
           isOpen={isOpen}
           title={productionName}
           imageUrl={imageUrl}
@@ -45,7 +52,6 @@ const ToolTip = ({
           price={priceDiscount}
           direction={{ upOrDown, leftOrRight }}
           outside={outside}
-          onBlur={() => setProduct('')}
         />
       )}
     </S.ToolTipBlock>

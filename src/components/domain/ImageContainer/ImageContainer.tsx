@@ -1,6 +1,7 @@
 import React from 'react';
 import { IImageView } from '@types';
 import { ToolTip } from '@components/domain';
+import { useSetProduct } from '@contexts/ProductContext';
 import * as S from './Style';
 
 interface ImageContainerProps {
@@ -9,9 +10,14 @@ interface ImageContainerProps {
 
 const ImageContainer = ({ imageViewData }: ImageContainerProps) => {
   const { imageUrl, productList } = imageViewData;
+  const setProduct = useSetProduct();
+
+  const offToolTip = () => {
+    setProduct('');
+  };
 
   return (
-    <S.ImageContainerBlock>
+    <S.ImageContainerBlock onClick={offToolTip}>
       <img src={imageUrl} alt="전체 이미지" />
       {productList.map(
         ({
@@ -26,6 +32,7 @@ const ImageContainer = ({ imageViewData }: ImageContainerProps) => {
         }) => (
           <ToolTip
             key={productId}
+            productId={productId}
             discountRate={discountRate}
             imageUrl={imageUrl}
             priceDiscount={priceDiscount}
