@@ -1,9 +1,12 @@
-import { Button } from '@components/base';
+import { PictureViewer } from '@components/domain';
+import { ProductProvider } from '@contexts/ProductContext';
 
 function App() {
   return (
     <>
-      <Button />
+      <ProductProvider>
+        <PictureViewer />
+      </ProductProvider>
     </>
   );
 }
