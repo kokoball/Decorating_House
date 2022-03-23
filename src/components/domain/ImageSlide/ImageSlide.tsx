@@ -25,9 +25,9 @@ const ImageSlide = ({ productList }: ImageSlideProps) => {
   };
 
   useEffect(() => {
-    const imageElems = [
-      ...document.querySelectorAll('.slide-item'),
-    ] as HTMLDivElement[];
+    const imageElems = Array.from(
+      document.querySelectorAll('.slide-item')
+    ) as HTMLDivElement[];
 
     slideItemRef.current = imageElems.reduce((map, $elem) => {
       map[$elem.dataset.name!] = $elem;
@@ -37,7 +37,7 @@ const ImageSlide = ({ productList }: ImageSlideProps) => {
 
   useEffect(() => {
     const x = slideItemRef.current[selectedProduct]?.getBoundingClientRect().x;
-    sliderRef.current.scrollTo(x, 0);
+    x && sliderRef.current.scrollTo(x, 0);
   }, [selectedProduct]);
 
   return (
