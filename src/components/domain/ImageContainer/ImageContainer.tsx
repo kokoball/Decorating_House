@@ -2,6 +2,7 @@ import React from 'react';
 import { IImageView } from '@types';
 import { ToolTip } from '@components/domain';
 import { useSetProduct } from '@contexts/ProductContext';
+import useBoundingRect from '@hooks/useBoundingRect';
 import * as S from './Style';
 
 interface ImageContainerProps {
@@ -11,6 +12,7 @@ interface ImageContainerProps {
 const ImageContainer = ({ imageViewData }: ImageContainerProps) => {
   const { imageUrl, productList } = imageViewData;
   const setProduct = useSetProduct();
+  const [rectInfo, callbackRef] = useBoundingRect();
 
   const offToolTip = () => {
     setProduct('');
@@ -18,7 +20,7 @@ const ImageContainer = ({ imageViewData }: ImageContainerProps) => {
 
   return (
     <S.ImageContainerBlock onClick={offToolTip}>
-      <img src={imageUrl} alt="전체 이미지" />
+      <img src={imageUrl} alt="전체 이미지" ref={callbackRef} />
       {productList.map(
         ({
           discountRate,
@@ -40,6 +42,7 @@ const ImageContainer = ({ imageViewData }: ImageContainerProps) => {
             productionName={productName}
             pointX={pointX}
             pointY={pointY}
+            imageHeight={rectInfo.height}
           />
         )
       )}

@@ -1,6 +1,6 @@
 import { ImageContainer, ImageSlide } from '@components/domain';
 import { IImageView } from '@types';
-import { useFetch } from '@hooks';
+import { useFetch } from '@hooks/useFetch';
 import * as S from './Style';
 
 const PictureViewer = () => {
