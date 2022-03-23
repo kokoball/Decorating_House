@@ -7,12 +7,14 @@ const PictureViewer = () => {
   const imageViewData = useFetch<IImageView>('dummy.json');
   return (
     <S.PictureViewerBlock>
-      {imageViewData && (
-        <>
-          <ImageContainer imageViewData={imageViewData} />
-          <ImageSlide productList={imageViewData.productList} />
-        </>
-      )}
+      <div>
+        {imageViewData && (
+          <>
+            <ImageContainer imageViewData={imageViewData} />
+            <ImageSlide productList={imageViewData.productList} />
+          </>
+        )}
+      </div>
     </S.PictureViewerBlock>
   );
 };
