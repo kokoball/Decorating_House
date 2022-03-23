@@ -47,7 +47,8 @@ const ImageSlide = ({ productList }: ImageSlideProps) => {
           <S.SlideItem
             key={productId}
             className={'slide-item'}
-            data-name={productName}>
+            data-name={productName}
+            draggable={false}>
             <ImageBox
               imageUrl={imageUrl}
               selected={selectedProduct === productName}

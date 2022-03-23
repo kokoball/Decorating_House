@@ -26,4 +26,7 @@ export const ImageBoxBlock = styled.div<
     border-radius: ${({ radius }) => radius}px;
     border: 0.5px solid ${({ selected }) => (selected ? 'white' : '#aaafb9')};
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;

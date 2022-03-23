@@ -22,9 +22,9 @@ const ImageBox = ({
       width={width}
       height={height}
       selected={selected}
-      radius={radius}>
-      onClick={onClick}
-      <img src={imageUrl} alt="가구 이미지" />
+      radius={radius}
+      onClick={onClick}>
+      <img src={imageUrl} alt="가구 이미지" draggable={false} />
     </S.ImageBoxBlock>
   );
 };
