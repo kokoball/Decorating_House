@@ -13,6 +13,6 @@ interface ToolTipProps {
 
 export const ToolTipBlock = styled.div<Pick<ToolTipProps, 'pointY' | 'pointX'>>`
   position: absolute;
-  top: ${({ pointX }) => pointX * 1.6}px;
-  left: ${({ pointY }) => pointY * 1.7}px;
+  top: ${({ pointX }) => pointX}px;
+  left: ${({ pointY }) => pointY}px;
 `;
