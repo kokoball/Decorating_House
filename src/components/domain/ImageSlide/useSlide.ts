@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { SLIDE } from '../../../utils/constant';
-import { IProduct } from '@models/ImageView';
+import { SLIDE } from '@utils';
+import { IProduct } from '@types';
 
 interface IUseSlide {
   productList: IProduct[];

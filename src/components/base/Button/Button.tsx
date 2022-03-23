@@ -8,8 +8,8 @@ interface ButtonProps {
 
 const Button = ({ isOpen = false, onClick }: ButtonProps) => {
   return (
-    <S.ButtonWrapper onClick={onClick}>
-      <S.Button>
+    <S.ButtonWrapper>
+      <S.Button onClick={onClick}>
         <S.SpanButton />
         <S.Svg viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="12" fill="currentColor"></circle>
