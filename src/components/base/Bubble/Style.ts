@@ -38,6 +38,9 @@ export const BubbleBlock = styled.div<
     ${({ direction }) =>
       direction.upOrDown === 'up' ? 'top: -8px;' : 'bottom: -8px;'}
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const RightSection = styled.div`
