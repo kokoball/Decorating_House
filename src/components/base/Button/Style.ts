@@ -6,6 +6,8 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Button = styled.button`
+  width: 28px;
+  height: 28px;
   position: relative;
   display: inline-block;
   margin: 0;
@@ -28,8 +30,6 @@ export const SpanButton = styled.span`
 `;
 
 export const Svg = styled.svg`
-  width: 1em;
-  height: 1em;
   font-size: 18px;
   color: rgba(53, 197, 240, 0.8);
   transition: color 0.1s;
