@@ -13,7 +13,7 @@ const useSlide = ({ productList, selectedProduct }: IUseSlide) => {
   const slideItemRef = useRef<{ [propsName: string]: HTMLDivElement }>({});
 
   const maxTransX =
-    Math.floor(productList.length / SLIDE.SCROLL_COUNT) * SLIDE.ITEM_WIDTH +
+    Math.floor(productList.length - SLIDE.SCROLL_COUNT) * SLIDE.ITEM_WIDTH +
     SLIDE.PAD;
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [startX, setStartX] = useState(0);

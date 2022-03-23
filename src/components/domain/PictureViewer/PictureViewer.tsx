@@ -4,7 +4,11 @@ import { useFetch } from '@hooks/useFetch';
 import * as S from './Style';
 
 const PictureViewer = () => {
-  const imageViewData = useFetch<IImageView>('dummy.json');
+  // @NOTE : dummy 데이터
+  // const imageViewData = useFetch<IImageView>('dummy.json');
+  const imageViewData = useFetch<IImageView>(
+    'https://cdn.ggumim.co.kr/test/image_product_link.json'
+  );
   return (
     <S.PictureViewerBlock>
       <div>
