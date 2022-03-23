@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@components/base';
 import { Bubble } from '@components/base';
 import { useSetProduct, useProductState } from '@contexts/ProductContext';
+import { useDirection } from '@components/domain';
 import * as S from './Style';
 
 export interface ToolTipProps {
@@ -13,6 +14,7 @@ export interface ToolTipProps {
   pointX: number;
   pointY: number;
   productId: number;
+  imageHeight: number;
 }
 
 const ToolTip = ({
@@ -24,12 +26,16 @@ const ToolTip = ({
   outside,
   pointX,
   pointY,
+  imageHeight,
 }: ToolTipProps) => {
   const setProduct = useSetProduct();
   const selectedProduct = useProductState();
 
-  const upOrDown = pointY * 1.7 < 450 ? 'up' : 'down';
-  const leftOrRight = pointX * 1.6 < 400 ? 'right' : 'left';
+  const { upOrDown, leftOrRight } = useDirection({
+    imageHeight,
+    pointX,
+    pointY,
+  });
 
   const isOpen = selectedProduct === productionName;
 
