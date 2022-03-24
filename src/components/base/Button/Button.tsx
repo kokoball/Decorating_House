@@ -2,14 +2,14 @@ import { MouseEventHandler } from 'react';
 import * as S from './Style';
 
 interface ButtonProps {
-  isOpen: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onMouseEnter: MouseEventHandler<HTMLButtonElement>;
+  onMouseLeave: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button = ({ isOpen = false, onClick }: ButtonProps) => {
+const Button = ({ onMouseEnter, onMouseLeave }: ButtonProps) => {
   return (
     <S.ButtonWrapper>
-      <S.Button onClick={onClick}>
+      <S.Button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <S.SpanButton />
         <S.Svg viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="12" fill="currentColor"></circle>
