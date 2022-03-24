@@ -40,13 +40,14 @@ const Bubble = ({
       tabIndex={1}
       onClick={moveToProductPage}>
       <ImageBox
-        width={70}
-        height={70}
+        width={80}
+        height={80}
         selected={false}
         radius={4}
         imageUrl={imageUrl}
       />
       <S.RightSection>
+        <S.Brand>{title.split(' ')[0]}</S.Brand>
         <S.Title>{title}</S.Title>
         <S.PriceTab className="price-tab">
           {!outside ? (
@@ -54,10 +55,21 @@ const Bubble = ({
           ) : (
             <S.ExpectedPrice>예상가</S.ExpectedPrice>
           )}
-          <S.Price className={'price'}>{addCommaSecond(price)}</S.Price>
-          <div>{'>'}</div>
+          <S.Price className={'price'}>{addCommaSecond(price)}원</S.Price>
         </S.PriceTab>
       </S.RightSection>
+      <S.Arrow>
+        <svg
+          width="1em"
+          height="1em"
+          viewBox="0 0 24 24"
+          preserveAspectRatio="xMidYMid meet">
+          <path
+            fill="currentColor"
+            fillRule="nonzero"
+            d="M6 19.692L8.25 22 18 12 8.25 2 6 4.308 13.5 12z"></path>
+        </svg>
+      </S.Arrow>
     </S.BubbleBlock>
   );
 };
