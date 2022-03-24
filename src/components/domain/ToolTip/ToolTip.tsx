@@ -37,15 +37,19 @@ const ToolTip = ({
 
   const isOpen = selectedProduct === productionName;
 
-  const toggleTooltip = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const enterTooltip = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setProduct((prevProduct) => {
-      return prevProduct === productionName ? '' : productionName;
-    });
+    setProduct(productionName);
+  };
+  const leaveTooltip = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setTimeout(() => {
+      setProduct('');
+    }, 300000);
   };
   return (
     <S.ToolTipBlock pointX={pointX} pointY={pointY}>
-      <Button isOpen={isOpen} onClick={toggleTooltip} />
+      <Button onMouseEnter={enterTooltip} onMouseLeave={leaveTooltip} />
       {isOpen && (
         <Bubble
           productId={productId}
