@@ -4,6 +4,8 @@ import * as S from './Style';
 interface ButtonProps {
   onMouseEnter: MouseEventHandler<HTMLButtonElement>;
   onMouseLeave: MouseEventHandler<HTMLButtonElement>;
+  isOpen?: any;
+  onClick?: any;
 }
 
 const Button = ({ onMouseEnter, onMouseLeave }: ButtonProps) => {
