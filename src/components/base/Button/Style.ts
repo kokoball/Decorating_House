@@ -6,8 +6,8 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   position: relative;
   display: inline-block;
   margin: 0;
