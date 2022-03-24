@@ -21,8 +21,7 @@
     "downlevelIteration": true,
     "outDir": "./dist",
     "typeRoots": ["./node_modules/@types", "types"]
-  },
-  
+  },  
   "include": [ "src" ],
   "extends": "./tsconfig.paths.json"
 }
