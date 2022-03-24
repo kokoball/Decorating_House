@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, MouseEventHandler } from 'react';
 import * as S from './Style';
 
 interface ImageBoxProps {
@@ -7,7 +7,7 @@ interface ImageBoxProps {
   selected: boolean;
   radius?: number;
   imageUrl: string;
-  onClick?: any;
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 const ImageBox = ({
@@ -24,7 +24,8 @@ const ImageBox = ({
     setStartX(clientX);
   };
   const handleMouseUp = (e: any) => {
-    if (Math.abs(startX - e.clientX) < 10) {
+    console.log(e);
+    if (Math.abs(startX - e.clientX) < 10 && onClick) {
       onClick(e);
     }
   };
