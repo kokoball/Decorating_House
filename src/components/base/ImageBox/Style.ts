@@ -13,13 +13,10 @@ export const ImageBoxBlock = styled.div<
   position: relative;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  ${({ selected }) =>
-    selected
-      ? `background: linear-gradient(163.54deg, #ff659e 8.22%, #f56b30 94.1%);`
-      : ``};
+  ${({ selected }) => (selected ? `box-shadow: 0 0 0 2px #6cd5f4;` : ``)};
 
   border-radius: 18px;
-  padding: 2px;
+  padding: 1px;
   img {
     width: 100%;
     height: 100%;
